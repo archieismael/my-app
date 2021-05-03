@@ -9,6 +9,14 @@ pipeline{
     
     stages{
         
+        stage ('Code Compile') {
+            steps{
+                sh """
+                mvn compile
+                """
+            }
+        }
+            
         stage ('Packaging') {
             steps {
                 sh """
