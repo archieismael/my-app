@@ -33,7 +33,7 @@ pipeline{
             }
         }
 
-        stage ('Build Docker Image') {
+        stage ('Push Docker Image') {
             steps {
                     withCredentials([string(credentialsId: 'docker-hub-pass', variable: 'docker-hub-pass')]) {
                        sh """
