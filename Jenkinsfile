@@ -49,9 +49,13 @@ pipeline{
 
         stage ('Run Docker Container') {
             steps {
-                sh """
-                docker run -p 8090:8080 archieismael/my-app:1.0
-                """
+                    sshagent(['tomcat-login']) {
+                        sh """
+                        ssh -o StrictHostKeyChecking=no acasas@10.0.0.50
+                        docker run -p 8090:8080 archieismael/my-app:1.0
+                        """
+                            
+                }    
             }
         }
             
