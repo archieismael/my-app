@@ -25,7 +25,15 @@ pipeline{
 
             }
         }
+            
+        stage ('Build Docker Image') {
+            steps {
+                sh """
+                docker build -t archieismael/my-app:1.0
+                """
 
+            }
+        }
    }
 
 }
