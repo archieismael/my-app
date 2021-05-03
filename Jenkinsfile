@@ -1,4 +1,4 @@
-def dockerRun = 'docker run -p 8090:8080 archieismael/my-app:1.0'
+def dockerRun = 'docker run -p 8080:8080 -d -name my-app archieismael/my-app:1.0'
 pipeline{
         agent {
             label 'master'
