@@ -35,8 +35,8 @@ pipeline{
 
         stage ('Push Docker Image') {
             steps {
-                    withCredentials([usernameColonPassword(credentialsId: 'archieismael-dockerhub', variable: 'dockerHubPwd')]) {
-                    //withCredentials([string(credentialsId: 'archieismael-dockerhub', variable: 'dockerHubPwd')]) {
+                    //withCredentials([usernameColonPassword(credentialsId: 'archieismael-dockerhub', variable: 'dockerHubPwd')]) {
+                    withCredentials([string(credentialsId: 'archieismael-dockerhub', variable: 'dockerHubPwd')]) {
                        sh """
                        docker login -u archieismael -p ${dockerHubPwd}
                        """
