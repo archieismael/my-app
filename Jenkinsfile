@@ -46,7 +46,15 @@ pipeline{
                 """
             }
         }
- 
+
+        stage ('Run Docker Container') {
+            steps {
+                sh """
+                docker run -p 8090:8080 archieismael/my-app:1.0
+                """
+            }
+        }
+            
    }
    post {
            always {
