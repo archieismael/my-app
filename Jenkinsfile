@@ -1,12 +1,27 @@
 pipeline{
-    agent any
+        agent {
+            label 'master'
+        }
+        tools {
+            maven 'maven_home'
+            jdk 'java_home'
+        }
+    
     stages{
-        stage("Nexus Download"){
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'nexus3', passwordVariable: 'password', usernameVariable: 'userName')]) {
-                     sh "wget --user=${userName} --password=${password} '${params.nexusWarURL}'"
-                }
+    
+        stage("SCM Checkout") {
+            git 'https://github.com/archieismael/my-app'
+        }
+        
+        stage ('Packaging') {
+            steps {
+                sh """
+                mvn package
+                """
+
             }
         }
-    }
+
+   }
+
 }
