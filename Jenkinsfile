@@ -1,3 +1,4 @@
+def dockerRun = 'docker run -p 8090:8080 archieismael/my-app:1.0'
 pipeline{
         agent {
             label 'master'
@@ -49,7 +50,7 @@ pipeline{
 
         stage ('Run Docker Container') {
             steps {
-                    def dockerRun = 'docker run -p 8090:8080 archieismael/my-app:1.0'
+                    
                     sshagent(['tomcat-login']) {
                         sh """
                         ssh -o StrictHostKeyChecking=no acasas@10.0.0.50 ${dockerRun}
